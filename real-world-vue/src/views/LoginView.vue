@@ -19,6 +19,7 @@
                     <span class="input-group-text"><i class="bi bi-file-lock2"></i></span>
                     <input type="password" class="form-control" id="senha" name="senha" placeholder="••••••••" required>
                 </div>
+                <a href="#" class="recuperar-senha">Recuperar senha</a>
             </div>
             
             <button type="submit" class="btn btn-primary">Entrar</button>

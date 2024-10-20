@@ -157,12 +157,25 @@ nav {
 nav a {
     font-weight: bold;
     color: white;
+    text-decoration: none;
 }
 
 nav a.router-link-exact-active {
     color: #42b983;
+    /*
+    text-decoration: underline;
+    */ 
 }
 
 h2 {
     font-size: 26px;
+}
+
+.recuperar-senha {
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1%;
+    color: black;
+    display: flex;
+    align-items: left; 
 }
