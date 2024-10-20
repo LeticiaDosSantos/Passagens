@@ -14,30 +14,43 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
+import PerfilService from '@/services/PerfilService.js';
 import QRCode from 'qrcode'; // Certifique-se de instalar esta biblioteca
 
 const user = ref(null);
 
-// Exemplo de dados do usuário (substitua pela sua lógica)
-user.value = {
-  name: 'Usuário Teste',
-  zipcode: '00000-000',
-  birthDate: '01/01/2000',
-  email: 'usuario@teste.com',
+// Função para buscar dados do usuário da API
+const fetchUser = (id) => {
+  PerfilService.getUsuario(id)
+    .then((response) => {
+      user.value = response.data;
+      console.log("Dados do usuário:", user.value);
+      nextTick(() => {
+        console.log("Gerando QR Code...");
+        generateQRCode('http://localhost:3000/perfil');
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 // Função para gerar QR Code
 const generateQRCode = (text) => {
   const canvas = document.getElementById('qrcode');
-  QRCode.toCanvas(canvas, text, { errorCorrectionLevel: 'H' }, function (error) {
-    if (error) console.error(error);
-    console.log('QR Code gerado!');
-  });
+  if (canvas) {
+    QRCode.toCanvas(canvas, text, { errorCorrectionLevel: 'H' }, function (error) {
+      if (error) console.error(error);
+      console.log('QR Code gerado com sucesso!');
+    });
+  } else {
+    console.error("Elemento <canvas> não encontrado.");
+  }
 };
 
 onMounted(() => {
-  generateQRCode(`Nome: ${user.value.name}, CPF: ${user.value.zipcode}, Email: ${user.value.email}`);
+  fetchUser(4); // Busca os dados do usuário com ID 4 e gera o QR Code após o DOM estar atualizado
 });
 </script>
 
@@ -47,8 +60,8 @@ onMounted(() => {
   display: inline-block;
 }
 
-.bordaQRCode{
-  width: 50%;
+.bordaQRCode {
+  width: 40%;
 }
 
 #qrcode {
