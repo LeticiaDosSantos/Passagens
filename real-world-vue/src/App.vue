@@ -9,17 +9,7 @@
   <div id="layout">
     <header>
       <div class="logo">Logo</div>
-      <!-- <nav class="nav">
-        <ul>
-          <li><a href="atalhos.php">Home</a></li>                
-          <li><a href="perfil.php">Meu Perfil</a></li>
-        </ul>
-      </nav>
-      <div class="menu-toggle">
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
-      </div>-->
+
       <div class="wrapper">
         <nav class="nav">
           <RouterLink :to="{ name: 'about' }">Home</RouterLink>
@@ -33,5 +23,7 @@
 </template>
 
 <style>
- 
+.nav a {
+  padding: 5px 5px;
+}
 </style>
