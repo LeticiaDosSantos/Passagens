@@ -12,7 +12,7 @@
 
       <div class="wrapper">
         <nav class="nav">
-          <RouterLink :to="{ name: 'about' }">Home</RouterLink>
+          <RouterLink :to="{ name: 'menu-atendente' }">Home</RouterLink>
           <RouterLink :to="{ name: 'perfil' }">Meu Perfil</RouterLink>
           <RouterLink :to="{ name: 'login' }">Login</RouterLink>
         </nav>

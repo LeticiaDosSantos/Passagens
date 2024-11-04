@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Vouchers from '../views/Vouchers.vue'
 import EventDetailsView from '../views/EventDetailsView.vue'
-import AboutView from '../views/AboutView.vue'
+import MenuAtendenteView from '../views/MenuAtendenteView.vue'
 import MenuCobradorView from '../views/MenuCobradorView.vue'
 import LoginView from '../views/LoginView.vue'
 import PerfilView from '../views/PerfilView.vue'
@@ -20,9 +20,9 @@ const router = createRouter({
       component: MenuCobradorView
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView
+      path: '/menu-atendente',
+      name: 'menu-atendente',
+      component: MenuAtendenteView
     }, 
     {
       path: '/event/:id',
