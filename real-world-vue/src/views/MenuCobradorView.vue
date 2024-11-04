@@ -1,6 +1,6 @@
 <template>
   <div class="area">
-    <h2 class="title-page">Área do Atendente</h2>
+    <h2 class="title-page">Área do Cobrador</h2>
     <div class="row">
       <div class="col-sm-3 atalhos">
         <a href="/vouchers" class="text-decoration-none">
@@ -13,11 +13,11 @@
         </a>
       </div>
       <div class="col-sm-3 atalhos">
-        <a href="/recarga" class="text-decoration-none">
+        <a href="/cobrar" class="text-decoration-none">
           <div class="card">
             <div class="card-body card-atalho">
                 <img src="../assets/img/recarga.png" alt="Imagem Redonda" class="imagem-redonda">
-                <h5 class="card-title">Recarga</h5>
+                <h5 class="card-title">Cobrar</h5>
             </div>
           </div>
         </a>
@@ -33,23 +33,13 @@
         </a>
       </div>
       <div class="col-sm-3 atalhos">
-        <a href="/usuarios" class="text-decoration-none">
+        <a href="/historico" class="text-decoration-none">
           <div class="card">
             <div class="card-body card-atalho">
                 <img src="../assets/img/usuarios.png" alt="Imagem Redonda" class="imagem-redonda">
-                <h5 class="card-title">Usuários</h5>
+                <h5 class="card-title">Histórico</h5>
             </div>
           </div>
-        </a>
-      </div>
-      <div class="col-sm-3 atalhos">
-        <a href="/linhas" class="text-decoration-none">
-          <div class="card">
-            <div class="card-body card-atalho">
-                <img src="../assets/img/usuarios.png" alt="Imagem Redonda" class="imagem-redonda">
-                <h5 class="card-title">Linhas</h5>
-            </div>
-          </div>    
         </a>
       </div>
   </div>
