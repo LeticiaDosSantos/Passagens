@@ -55,19 +55,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.image-container {
-  position: relative;
-  display: inline-block;
-}
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
 
-.bordaQRCode {
-  width: 40%;
-}
+  .bordaQRCode {
+    width: 40%;
+  }
 
-#qrcode {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  #qrcode {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 </style>

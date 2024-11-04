@@ -18,20 +18,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="title-page">Vouchers e Saldos</h2>
-  <div class="events">
-    <EventCard class="card-voucher" v-for="event in events" :key="event.id" :event="event" />
+  <div class="vouchers">
+    <h2 class="title-page">Vouchers e Saldos</h2>
+    <div class="events">
+      <EventCard class="card-voucher" v-for="event in events" :key="event.id" :event="event" />
+    </div>
   </div>
 </template>
 
 <style scoped>
-  .card-voucher{
-    border-radius: 1rem;
+  .vouchers{
+    width:  80%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
-  .events {
+  .events { 
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
   }
 </style>

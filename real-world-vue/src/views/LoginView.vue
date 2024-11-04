@@ -22,7 +22,18 @@
                 <a href="#" class="recuperar-senha">Recuperar senha</a>
             </div>
             
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="submit" class="azul-escuro">Entrar</button>
         </form>
     </div>
 </template>
+
+<style>
+.azul-escuro{
+    background-color: #0030b9;
+    border: none;
+    color: white;
+    padding: 0.5%;
+    width: 10%;
+    border-radius: 2rem;
+}
+</style>
