@@ -3,6 +3,7 @@ import Vouchers from '../views/Vouchers.vue'
 import EventDetailsView from '../views/EventDetailsView.vue'
 import MenuAtendenteView from '../views/MenuAtendenteView.vue'
 import MenuCobradorView from '../views/MenuCobradorView.vue'
+import MenuAdmView from '../views/MenuAdmView.vue'
 import LoginView from '../views/LoginView.vue'
 import PerfilView from '../views/PerfilView.vue'
 
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/menu-atendente',
       name: 'menu-atendente',
       component: MenuAtendenteView
+    }, 
+    {
+      path: '/menu-adm',
+      name: 'menu-adm',
+      component: MenuAdmView
     }, 
     {
       path: '/event/:id',
