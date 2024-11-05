@@ -22,7 +22,9 @@
                 <a href="#" class="recuperar-senha">Recuperar senha</a>
             </div>
             
-            <button type="submit" class="azul-escuro">Entrar</button>
+            <RouterLink :to="{ name: 'perfil' }">
+                <button class="azul-escuro">Entrar</button>
+            </RouterLink>
         </form>
     </div>
 </template>

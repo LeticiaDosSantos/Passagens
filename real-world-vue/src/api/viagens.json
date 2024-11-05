@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "titulo": "Jlle x S. Fco",
+        "valores": {
+            "Comum": 36.50,
+            "Idoso": 0.0,
+            "Meia": 18.25
+        },
+        "origem": "Joinville",
+        "destino": "São Francisco do Sul"
+    },
+    {
+        "id": 2,
+        "titulo": "Jlle x B. Sul",
+        "valores": {
+            "Comum": 24.80,
+            "Idoso": 0.0,
+            "Meia": 12.40
+        },
+        "origem": "Joinville",
+        "destino": "Barra do Sul"
+    }
+
+]
+  

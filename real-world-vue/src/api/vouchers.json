@@ -1,0 +1,20 @@
+[
+  {
+      "id": 1,
+      "id_viagem": 1,
+      "id_usuario": 1,
+      "quantidade": 2
+  },
+  {
+      "id": 2,
+      "id_viagem": 2,
+      "id_usuario": 1,
+      "quantidade": 3
+  },
+  {
+      "id": 3,
+      "id_viagem": 1,
+      "id_usuario": 2,
+      "quantidade": 1
+  }
+]
