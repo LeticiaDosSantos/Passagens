@@ -11,7 +11,7 @@
             <input
                 type="text"
                 class="form-control"
-                placeholder="Pesquisar por id, permissão, nome, email ou CPF"
+                placeholder="Pesquisar por nome, permissão, email ou CPF"
                 v-model="searchQuery"
             />
             <span class="input-group-text" @click="clearSearch" style="cursor: pointer;">
