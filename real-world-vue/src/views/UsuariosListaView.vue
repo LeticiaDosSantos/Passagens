@@ -31,6 +31,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Permissão</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Email</th>
@@ -40,6 +41,7 @@
             <tbody>
                 <tr v-for="usuario in filteredUsuarios" :key="usuario.id">
                     <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.permissao }}</td>
                     <td>{{ usuario.nome }}</td>
                     <td>{{ usuario.cpf }}</td>
                     <td>{{ usuario.email }}</td>
