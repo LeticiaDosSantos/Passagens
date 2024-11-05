@@ -13,7 +13,7 @@
         <div class="card h-100 d-flex flex-row">
           <div class="card-body d-flex flex-grow-1">
             <div class="flex-grow-1">
-              <h5 class="card-title">Viagem ID: {{ voucher.id_viagem }}</h5>
+              <h5 class="card-title">{{ getViagemInfo(voucher.id_viagem).titulo }}</h5>
               <p class="card-text">Origem: {{ getViagemInfo(voucher.id_viagem).origem }}</p>
               <p class="card-text">Destino: {{ getViagemInfo(voucher.id_viagem).destino }}</p>
               <p class="card-text">Valor: R$ {{ getViagemInfo(voucher.id_viagem).valores.Comum.toFixed(2) }}</p>

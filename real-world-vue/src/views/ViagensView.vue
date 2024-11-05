@@ -1,18 +1,28 @@
 <template>
     <div class="container mt-5">
-      <h2 class="title-page">Meus Voucher2s</h2>
+      <h2 class="title-page">Viagens</h2>
       <div v-if="loading" class="alert alert-info">Carregando...</div>
       <div v-if="error" class="alert alert-danger">{{ error }}</div>
   
-      <ul v-if="filteredVouchers.length">
-        <li v-for="voucher in filteredVouchers" :key="voucher.id">
-          Voucher ID: {{ voucher.id }} | 
-          Usuário ID: {{ voucher.id_usuario }} | 
-          Viagem ID: {{ voucher.id_viagem[0] }} | 
-          Quantidade: {{ voucher.quantidade }}
-        </li>
-      </ul>
-      <div v-else>Não há vouchers disponíveis para este usuário.</div>
+      <div class="row">
+        <div
+          class="col-md-4 mb-3"
+          v-for="viagem in filteredViagens"
+          :key="viagem.id"
+        >
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ viagem.titulo }}</h5>
+              <p class="card-text">Origem: {{ viagem.origem }}</p>
+              <p class="card-text">Destino: {{ viagem.destino }}</p>
+              <b>Valores</b>
+              <p class="card-text">Comum: R$ {{ viagem.valores.Comum.toFixed(2) }}</p>
+              <p class="card-text">Idoso: R$ {{ viagem.valores.Idoso.toFixed(2) }}</p>
+              <p class="card-text">Meia: R$ {{ viagem.valores.Meia.toFixed(2) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </template>
   
@@ -20,36 +30,46 @@
   import { ref, onMounted, computed } from 'vue';
   import axios from 'axios';
   
-  const vouchers = ref([]);
+  const viagens = ref([]);
   const loading = ref(true);
   const error = ref(null);
-  const userId = 1; // ID do usuário que queremos filtrar
+  const searchQuery = ref('');
   
-  // Função para buscar os vouchers
-  const fetchVouchers = async () => {
+  const fetchViagens = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/vouchers');
-      console.log(response.data); // Log para depuração
-      vouchers.value = response.data; // A resposta é um array de vouchers
+      const response = await axios.get('http://localhost:3001/api/viagens');
+      viagens.value = response.data; // A estrutura correta é um array de viagens
     } catch (err) {
-      error.value = 'Erro ao carregar os vouchers.';
-      console.error('Erro ao carregar os vouchers:', err.response ? err.response.data : err.message);
+      error.value = 'Erro ao carregar as viagens.';
+      console.error(err);
     } finally {
       loading.value = false;
     }
   };
   
-  onMounted(fetchVouchers);
+  onMounted(fetchViagens);
   
-  // Computed para filtrar os vouchers do usuário específico
-  const filteredVouchers = computed(() => {
-    return vouchers.value.filter(voucher => voucher.id_usuario === userId);
+  const filteredViagens = computed(() => {
+    if (!searchQuery.value) {
+      return viagens.value;
+    }
+    const query = searchQuery.value.toLowerCase();
+    return viagens.value.filter(viagem =>
+      viagem.titulo.toLowerCase().includes(query) ||
+      viagem.origem.toLowerCase().includes(query) ||
+      viagem.destino.toLowerCase().includes(query)
+    );
   });
   </script>
   
   <style scoped>
-  .alert {
-    margin-bottom: 1rem;
+  .card {
+    border: 1px solid #007bff;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
   }
   </style>
   
