@@ -11,23 +11,26 @@
             <input
                 type="text"
                 class="form-control"
-                placeholder="Pesquisar por nome, permissão, email ou CPF"
+                placeholder="Pesquisar por id, permissão, nome, email ou CPF"
                 v-model="searchQuery"
             />
-            <span class="input-group-text" @click="clearSearch">
+            <span class="input-group-text" @click="clearSearch" style="cursor: pointer;">
                 <!-- Ícone de "X" do Bootstrap -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 1 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 1 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </span>
+            <button class="btn btn-primary ms-2" @click="showModal">
+                Novo
+            </button>
         </div>
+
         <div v-if="loading" class="alert alert-info">Carregando...</div>
         <div v-if="error" class="alert alert-danger">{{ error }}</div>
         <table class="table table-striped" v-if="!loading && !error">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Tipo</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Email</th>
@@ -37,7 +40,6 @@
             <tbody>
                 <tr v-for="usuario in filteredUsuarios" :key="usuario.id">
                     <td>{{ usuario.id }}</td>
-                    <td>{{ usuario.permissao }}</td>
                     <td>{{ usuario.nome }}</td>
                     <td>{{ usuario.cpf }}</td>
                     <td>{{ usuario.email }}</td>
@@ -45,6 +47,48 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Modal para Cadastro -->
+        <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Novo Usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit.prevent="submitForm">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" id="nome" v-model="newUser.nome" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="text" id="cpf" v-model="newUser.cpf" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="permissao" class="form-label">Permissão</label>
+                                <input type="text" id="permissao" v-model="newUser.permissao" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" v-model="newUser.email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                                <input type="date" id="data_nascimento" v-model="newUser.data_nascimento" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" id="senha" v-model="newUser.senha" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -59,6 +103,14 @@ export default {
         const loading = ref(true);
         const error = ref(null);
         const searchQuery = ref('');
+        const newUser = ref({
+            nome: '',
+            cpf: '',
+            permissao: '',
+            email: '',
+            data_nascimento: '',
+            senha: ''
+        });
 
         const fetchUsuarios = async () => {
             try {
@@ -81,9 +133,8 @@ export default {
             const query = searchQuery.value.toLowerCase();
             return usuarios.value.filter(usuario => 
                 usuario.nome.toLowerCase().includes(query) ||
-                usuario.permissao.toLowerCase().includes(query) ||
                 usuario.email.toLowerCase().includes(query) ||
-                usuario.cpf.includes(query) // CPF não precisa ser case insensitive
+                usuario.cpf.includes(query)
             );
         });
 
@@ -91,7 +142,34 @@ export default {
             searchQuery.value = '';
         };
 
-        return { usuarios, loading, error, searchQuery, filteredUsuarios, clearSearch };
+        const showModal = () => {
+            const modal = new bootstrap.Modal(document.getElementById('cadastroModal'));
+            modal.show();
+        };
+
+        const submitForm = async () => {
+            try {
+                await axios.post('http://localhost:3001/api/usuarios', newUser.value);
+                alert('Usuário cadastrado com sucesso!');
+                // Limpar os campos do formulário e recarregar a lista de usuários
+                newUser.value = {
+                    nome: '',
+                    cpf: '',
+                    permissao: '',
+                    email: '',
+                    data_nascimento: '',
+                    senha: ''
+                };
+                fetchUsuarios();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('cadastroModal'));
+                modal.hide();
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao cadastrar o usuário.');
+            }
+        };
+
+        return { usuarios, loading, error, searchQuery, filteredUsuarios, clearSearch, showModal, newUser, submitForm };
     }
 };
 </script>
