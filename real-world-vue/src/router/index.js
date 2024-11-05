@@ -6,6 +6,7 @@ import MenuCobradorView from '../views/MenuCobradorView.vue'
 import MenuAdmView from '../views/MenuAdmView.vue'
 import LoginView from '../views/LoginView.vue'
 import PerfilView from '../views/PerfilView.vue'
+import UsuariosListaView from '../views/UsuariosListaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,10 @@ const router = createRouter({
       path: '/perfil',
       name: 'perfil',
       component: PerfilView,
+    },{
+      path: '/usuarios',
+      name: 'usuarios',
+      component: UsuariosListaView,
     },
   ]
 })
