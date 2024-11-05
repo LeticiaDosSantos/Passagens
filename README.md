@@ -11,3 +11,13 @@ npm install qrcode
 npm run build
 npm run dev
 ```
+
+Em um segundo terminal, execute:
+````
+cd real-world-vue\src\api
+```
+
+Depois disso, execute o servidor:
+```
+node server.js
+```

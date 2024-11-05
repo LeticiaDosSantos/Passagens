@@ -1,9 +1,9 @@
 <template>
   <div v-if="user" class="qr-container">
-    <h2 class="title-page">{{ user.name }}</h2>
+    <h2 class="title-page">{{ user.nome }}</h2>
     <div class='icone-perfil'><i class="bi bi-person-circle"></i></div>
-    <p><strong>CPF:</strong> {{ user.zipcode }}</p>
-    <p><strong>Data de Nascimento:</strong> {{ user.birthDate }}</p>
+    <p><strong>CPF:</strong> {{ user.cpf }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ user.data_nascimento }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
 
     <div class="image-container">
@@ -50,7 +50,7 @@ const generateQRCode = (text) => {
 };
 
 onMounted(() => {
-  fetchUser(4); // Busca os dados do usuário com ID 4 e gera o QR Code após o DOM estar atualizado
+  fetchUser(1); // Busca os dados do usuário com ID 4 e gera o QR Code após o DOM estar atualizado
 });
 </script>
 

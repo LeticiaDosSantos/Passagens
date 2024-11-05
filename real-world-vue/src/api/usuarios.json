@@ -1,0 +1,19 @@
+    [
+        {
+        "id": 1,
+        "nome": "Leticia dos Santos",
+        "cpf": "12345678901",
+        "email": "leticia_santos250@hotmail.com",
+        "data_nascimento": "21/12/2001",
+        "senha": "hash_senha_exemplo"
+        },
+        {
+            "id": 2,
+            "nome": "Claudecir dos Santos",
+            "cpf": "00456789145",
+            "email": "usuario.exemplo@example.com",
+            "data_nascimento": "17/11/1963",
+            "senha": "hash_senha_exemplo"
+        }
+    ]
+    
