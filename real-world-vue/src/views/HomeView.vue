@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 .fundo-imagem {
-    background-image: url('../assets/img/fundo-azul2.jpg'); /* Define a imagem de fundo */
+    background-image: url('../assets/img/fundo-azul3.jpg'); /* Define a imagem de fundo */
     background-size: cover; /* Redimensiona a imagem para cobrir o div */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -36,12 +36,8 @@ export default {
     color: white;
     font-weight: 10; /* Define uma fonte mais fina */
     text-shadow: 
-        0 0 5px #fff,
         0 0 10px #fff,
-        0 0 15px #fff,
         0 0 20px #0d6efd,
-        0 0 30px #0d6efd,
-        0 0 40px #0d6efd,
         0 0 50px #0d6efd,
         0 0 60px #0d6efd;
     background-color: transparent; /* Fundo transparente */
@@ -57,9 +53,6 @@ export default {
         0 0 5px #fff,
         0 0 10px #fff,
         0 0 15px #fff,
-        0 0 20px #fff,
-        0 0 30px #0d6efd,
-        0 0 40px #0d6efd,
         0 0 50px #0d6efd,
         0 0 60px #0d6efd; /* Pode adicionar ou alterar a sombra */
     transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
