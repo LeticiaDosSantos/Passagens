@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "passageiro": "Leticia dos Santos",
+        "viagem": "Joinville x Porto Grande",
+        "cpf": "12345678901",
+        "data": "08/05/2025 07:15:23",
+        "valor": 12.40,
+        "tipo": "Estudante"
+    },
+    {
+        "id": 2,
+        "passageiro": "Vinícius Dácio da Silva",
+        "viagem": "Porto Grande x Jlle",
+        "cpf": "00456789145",
+        "data": "08/05/2025 10:17:40",
+        "valor": 12.40,
+        "tipo": "Estudante"
+    }
+]

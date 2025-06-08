@@ -7,6 +7,9 @@ import MenuAdmView from '../views/MenuAdmView.vue'
 import LoginView from '../views/LoginView.vue'
 import PerfilView from '../views/PerfilView.vue'
 import UsuariosListaView from '../views/UsuariosListaView.vue'
+import RecargaView from '../views/RecargaView.vue'
+import HistoricoView from '../views/HistoricoView.vue'
+import CobrancaView from '../views/CobrancaView.vue'
 import HomeView from '../views/HomeView.vue'
 import ViagensView from '../views/ViagensView.vue'
 
@@ -67,6 +70,21 @@ const router = createRouter({
       path: '/usuarios',
       name: 'usuarios',
       component: UsuariosListaView,
+    },
+    {
+      path: '/historico',
+      name: 'historico',
+      component: HistoricoView,
+    },
+    {
+      path: '/recarga',
+      name: 'recarga',  
+      component: RecargaView,
+    },
+    {
+      path: '/cobranca',
+      name: 'cobranca',
+      component: CobrancaView,
     },
   ]
 })

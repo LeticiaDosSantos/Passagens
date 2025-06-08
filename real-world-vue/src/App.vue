@@ -16,7 +16,7 @@
         <nav class="nav">
           <RouterLink :to="{ name: 'menu-atendente' }">Home</RouterLink>
           <RouterLink :to="{ name: 'perfil' }">Meu Perfil</RouterLink>
-          <RouterLink :to="{ name: 'login' }">Login</RouterLink>
+          <RouterLink :to="{ name: 'login' }">Logout</RouterLink>
         </nav>
       </div>
     </header>

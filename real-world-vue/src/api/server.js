@@ -12,6 +12,7 @@ app.use(cors());
 const usuariosFilePath = 'C:\\Users\\Leticia\\Documents\\GitHub\\Passagens\\real-world-vue\\src\\api\\usuarios.json';
 const viagensFilePath = 'C:\\Users\\Leticia\\Documents\\GitHub\\Passagens\\real-world-vue\\src\\api\\viagens.json';
 const vouchersFilePath = 'C:\\Users\\Leticia\\Documents\\GitHub\\Passagens\\real-world-vue\\src\\api\\vouchers.json';
+const historicoFilePath = 'C:\\Users\\Leticia\\Documents\\GitHub\\Passagens\\real-world-vue\\src\\api\\historico.json';
 
 // Rota para obter todos os usuários
 app.get('/api/usuarios', async (req, res) => {
@@ -21,6 +22,18 @@ app.get('/api/usuarios', async (req, res) => {
     } catch (err) {
         console.error('Erro ao ler o arquivo de usuários:', err);
         res.status(500).json({ error: 'Erro ao ler o arquivo de usuários' });
+    }
+});
+
+
+// Rota para obter o histórico
+app.get('/api/historico', async (req, res) => {
+    try {
+        const data = await fs.readFile(historicoFilePath, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (err) {
+        console.error('Erro ao ler o arquivo de histórico:', err);
+        res.status(500).json({ error: 'Erro ao ler o arquivo de histórico' });
     }
 });
 

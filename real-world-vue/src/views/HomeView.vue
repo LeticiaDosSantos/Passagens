@@ -19,12 +19,12 @@ export default {
 
 <style scoped>
 .fundo-imagem {
-    background-image: url('../assets/img/fundo-azul3.jpg'); /* Define a imagem de fundo */
+    background-image: url('../assets/img/fundo-azul.jpg'); /* Define a imagem de fundo */
     background-size: cover; /* Redimensiona a imagem para cobrir o div */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Evita que a imagem se repita */
     width: 100%; /* Define a largura do div para ocupar 100% do espaço */
-    height: 125vh; /* Define a altura para ocupar a tela toda */
+    height: 89vh; /* Define a altura para ocupar a tela toda */
 }
 
 .comecar{
