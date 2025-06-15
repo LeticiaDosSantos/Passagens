@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="col-sm-3 atalhos">
-        <a href="/cobrar" class="text-decoration-none">
+        <a href="/cobranca" class="text-decoration-none">
           <div class="card">
             <div class="card-body card-atalho">
                 <img src="../assets/img/recarga.png" alt="Imagem Redonda" class="imagem-redonda">
