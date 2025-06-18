@@ -25,10 +25,10 @@ const fetchUser = (id) => {
   PerfilService.getUsuario(id)
     .then((response) => {
       user.value = response.data;
-      console.log("Dados do usuário:", user.value);
       nextTick(() => {
-        console.log("Gerando QR Code...");
-        generateQRCode('http://localhost:3000/perfil');
+        let cpf = user.value.cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+        console.log(cpf);
+        generateQRCode(cpf);
       });
     })
     .catch((error) => {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 const cpf = ref('')
 const nome = ref('')
@@ -35,6 +35,8 @@ const iniciarScanner = async () => {
   nome.value = ''
   scanning.value = true
 
+  await nextTick()
+
   video = document.getElementById('video-preview')
   canvas = document.getElementById('canvas')
   context = canvas.getContext('2d')
@@ -42,12 +44,19 @@ const iniciarScanner = async () => {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
     video.srcObject = stream
-    await video.play()
+
+    await new Promise(resolve => {
+      video.onloadedmetadata = () => {
+        video.play()
+        resolve()
+      }
+    })
+
     interval = setInterval(scanFrame, 500)
-  } catch {
-    // Simulação silenciosa: câmera não obrigatória
-    console.warn('Câmera não acessível — exibição simulada')
-    scanning.value = true
+  } catch (e) {
+    scanning.value = false
+    erro.value = 'Não foi possível acessar a câmera.'
+    console.warn('Câmera não acessível:', e)
   }
 }
 
@@ -77,7 +86,7 @@ const scanFrame = () => {
   }
 }
 
-onMounted(async () => {
+onMounted(() => {
   if (!window.jsQR) {
     const script = document.createElement('script')
     script.src = 'https://unpkg.com/jsqr'
@@ -120,31 +129,34 @@ onBeforeUnmount(() => {
     </div>
 
     <div v-if="scanning" class="camera-wrapper text-center mb-3">
-      <video id="video-preview" autoplay muted playsinline></video>
-      <div class="scan-box"></div>
+      <div class="video-container">
+        <video id="video-preview" autoplay muted playsinline></video>
+        <div class="scan-box"></div>
+      </div>
     </div>
     <canvas id="canvas" style="display: none;"></canvas>
   </div>
 </template>
 
 <style scoped>
-.phone-frame {
-  max-width: 400px;
-  border: 2px solid #ccc;
-  border-radius: 30px;
-  background-color: white;
-  box-shadow: 0 0 10px #ccc;
-  margin: auto;
+.camera-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.camera-wrapper {
+.video-container {
   position: relative;
-  width: 100%;
+  width: 35%;
+  height: 35%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 #video-preview {
   width: 100%;
-  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
   background-color: black;
 }
 
@@ -152,10 +164,10 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60%;
-  height: 40%;
+  width: 50%;
+  height: 50%;
   transform: translate(-50%, -50%);
   border: 2px dashed red;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 </style>
